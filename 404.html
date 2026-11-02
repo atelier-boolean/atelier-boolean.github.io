@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cosmic Window</title>
+  <meta name="description" content="Open this in Cosmic Window, or get the app on Google Play.">
+  <!-- Share previews: one card for every shared item, since the site is
+       static and preview bots don't run scripts. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cosmic Window">
+  <meta property="og:title" content="Cosmic Window">
+  <meta property="og:description" content="Open this in Cosmic Window, or get the app on Google Play.">
+  <meta property="og:image" content="https://atelier-boolean.github.io/cosmic-window/icon.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="robots" content="noindex">
+  <!-- Absolute paths: GitHub Pages serves this page at any missing path. -->
+  <link rel="icon" href="/cosmic-window/icon.png">
+  <link rel="stylesheet" href="/cosmic-window-legal/style.css">
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="app-name">Atelier Boolean</p>
+    <h1 id="title">Cosmic Window</h1>
+  </header>
+
+  <main>
+    <!-- A shared item: /cosmic-window/details/<type>/<id>. -->
+    <div id="item" hidden>
+      <p class="updated">Someone shared this with you from Cosmic Window, an app for NASA's pictures, videos and data.</p>
+      <ul class="actions">
+        <li id="open-in-app" hidden><a class="button primary" id="open-link" href="#">Open in Cosmic Window</a></li>
+        <li><a class="button" href="https://play.google.com/store/apps/details?id=com.atelierboolean.cosmicwindow">Get it on Google Play</a></li>
+      </ul>
+      <p class="intro" id="ios-note" hidden>Cosmic Window is on Android for now. The iPhone app comes later.</p>
+    </div>
+
+    <!-- Anything else. -->
+    <div id="missing" hidden>
+      <p class="updated">This page doesn't exist.</p>
+      <ul class="links">
+        <li><a href="/">Atelier Boolean</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">© Atelier Boolean</footer>
+
+  <script>
+    (function () {
+      var kPackage = 'com.atelierboolean.cosmicwindow';
+      var kPlay = 'https://play.google.com/store/apps/details?id=' + kPackage;
+      // The app's own check (LinkIds) still runs on whatever it receives.
+      var kItemPath = /^\/cosmic-window\/details\/[A-Za-z]{1,32}\/[^\/]{1,256}$/;
+
+      var path = location.pathname;
+      if (!kItemPath.test(path)) {
+        document.getElementById('missing').hidden = false;
+        return;
+      }
+      document.getElementById('item').hidden = false;
+
+      var ua = navigator.userAgent;
+      if (/Android/i.test(ua)) {
+        // Opens the app when it's installed, else Google Play.
+        var intent = 'intent://' + location.host + path + location.search +
+          '#Intent;scheme=https;package=' + kPackage +
+          ';S.browser_fallback_url=' + encodeURIComponent(kPlay) + ';end';
+        document.getElementById('open-link').href = intent;
+        document.getElementById('open-in-app').hidden = false;
+        // Some browsers block this without a tap: the button stays.
+        location.replace(intent);
+      } else if (/iPhone|iPad|iPod/i.test(ua) ||
+          (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) {
+        document.getElementById('ios-note').hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

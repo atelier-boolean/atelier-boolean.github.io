@@ -1,0 +1,32 @@
+/* Additions to the legal pages' style (/cosmic-window-legal/style.css),
+   which holds the colours, spacing and type. */
+
+.actions {
+  margin: 0 0 var(--s600);
+  padding: 0;
+  list-style: none;
+}
+
+.actions li {
+  margin: 0 0 var(--s300);
+}
+
+/* As the app's buttons: a filled one for the main action. */
+.button {
+  display: block;
+  padding: var(--s400);
+  border: 1px solid var(--border);
+  border-radius: var(--r600);
+  color: var(--content-primary);
+  font-size: var(--title);
+  line-height: var(--title-line);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
