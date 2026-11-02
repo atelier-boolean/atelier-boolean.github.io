@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.atelierboolean.cosmicwindow",
+      "sha256_cert_fingerprints": [
+        "DD:AB:C4:8E:63:1E:6D:8C:97:1C:10:5F:67:00:EE:9F:E5:2D:77:5B:95:D3:6D:4C:85:00:5D:CE:20:24:35:BA",
+        "CD:FA:0E:69:64:B3:AB:AF:74:50:AE:FC:6C:10:0E:07:30:E3:69:9E:62:09:BD:23:81:A2:DB:78:89:99:76:5F",
+        "E9:F8:9F:92:31:61:6F:FC:84:1A:A3:CF:B3:39:7F:62:32:00:B6:FE:29:9D:62:AB:23:8A:77:C3:30:45:C6:9D"
+      ]
+    }
+  }
+]
